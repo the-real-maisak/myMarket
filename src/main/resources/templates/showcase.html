@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Товары</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<a href="marketplace" class="btn btn-success">главная</a>
+<div class="container">
+    <table class="table table-striped">
+        <tr>
+            <th>id</th>
+            <th></th>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>В наличии</th>
+        </tr>
+        <tr th:each="product : ${productList}">
+            <td th:text="${product.id}"></td>
+            <td><a th:href="@{product(id=${product.id})}"><img th:src="${product.govno}" alt="" height="180px"/></a></td>
+<!--            <td><img th:src="${product.fileName}" /></td>-->
+            <td>
+                <a th:text="${product.name}" th:href="@{product(id=${product.id})}"></a>
+            </td>
+            <td th:text="${product.value}"></td>
+            <td th:text="${product.inStock}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
