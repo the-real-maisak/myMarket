@@ -18,7 +18,7 @@
         </tr>
         <tr th:each="product : ${productList}">
             <td th:text="${product.id}"></td>
-            <td><a th:href="@{product(id=${product.id})}"><img th:src="${product.govno}" alt="" height="180px"/></a></td>
+            <td><a th:href="@{product(id=${product.id})}"><img th:src="${product.imageName}" alt="" height="180px"/></a></td>
 <!--            <td><img th:src="${product.fileName}" /></td>-->
             <td>
                 <a th:text="${product.name}" th:href="@{product(id=${product.id})}"></a>
