@@ -31,27 +31,34 @@ public class AdminController {
     @Autowired
     UsersService UsersService;
 
-    @GetMapping("/administrate/users")
+    @GetMapping("/administrate")
+    public String findAll(Model model) {
+        List<Product> productList = repository.findAll();
+        model.addAttribute("productList", productList);
+        return "administrate";
+    }
+
+    @GetMapping("users")
     public String adminPage(Model model){
         List<Users> list= UsersService.getAllUsers();
         model.addAttribute("allUsers",list);
         return "administrate";
     }
 
-    @GetMapping("/administrate/delete")
+    @GetMapping("delete")
     public String delete(@RequestParam int id) {
         repository.deleteById(id);
         return "redirect:administrate?login=admin";
     }
 
-    @GetMapping("/administrate/uploadFile")
+    @GetMapping("uploadFile")
     public String uploadFile(@RequestParam int id, Model model) {
         Product product = repository.findById(id).get();
         model.addAttribute("product", product);
-        return "uploadFile?login=admin";
+        return "uploadFile";
     }
 
-    @PostMapping("/administrate/uploadFile")
+    @PostMapping("uploadFile")
     public String uploadFile(@ModelAttribute Product product, @RequestParam("file") MultipartFile file, RedirectAttributes attributes) {
         if (file.isEmpty()) {
             attributes.addFlashAttribute("message", "uploadFile");
@@ -59,7 +66,7 @@ public class AdminController {
         }
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
         Path path = null;
-        String image_Dir = "C:\\Users\\satan\\IdeaProjects\\myMarket\\src\\main\\resources\\images\\";
+        String image_Dir = "C:\\Users\\satan\\IdeaProjects\\myMarket\\src\\main\\resources\\static\\images\\";
         try {
             path = Path.of(image_Dir + fileName);
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
@@ -67,32 +74,32 @@ public class AdminController {
             e.printStackTrace();
         }
 //        product = Optional.ofNullable(repository.findById().get()).map(product2 -> repository.findById(product.getId()).get()).orElseThrow(()->new RuntimeException("Error"));
-        product.setGovno("images/" + path.getFileName().toString());
+        product.setGovno("static/images/" + path.getFileName().toString());
 //        product.setId(product.getId());
         repository.save(product);
 //        attributes.addAttribute("message", "uploaded" + fileName + "!");
         return "redirect:administrate?login=admin";
     }
 
-    @GetMapping("/administrate/add")
+    @GetMapping("add")
     public String add() {
         return "add";
     }
 
-    @PostMapping("/administrate/add")
+    @PostMapping("add")
     public String add(@ModelAttribute Product product) {
         repository.save(product);
         return "redirect:administrate?login=admin";
     }
 
-    @GetMapping("/administrate/update")
+    @GetMapping("update")
     public String update(@RequestParam int id, Model model) {
         Product product = repository.findById(id).get();
         model.addAttribute("product", product);
         return "update";
     }
 
-    @PostMapping("/administrate/update")
+    @PostMapping("update")
     public String update(@ModelAttribute Product product) {
         repository.save(product);
         return "redirect:administrate?login=admin";
