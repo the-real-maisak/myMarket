@@ -17,10 +17,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeHttpRequests( urlConfig -> urlConfig
-                        .antMatchers("/marketplace","/", "/registration").permitAll()
+                        .antMatchers("/marketplace", "/", "/registration").permitAll()
                       // .anyRequest().authenticated().
-                        .antMatchers("/administrate**", "/product**").hasAuthority(Role.ADMIN.getAuthority())
-                        .antMatchers("/product**").hasAuthority(Role.USER.getAuthority())
+                        .antMatchers("/administrate**").hasAuthority(Role.ADMIN.getAuthority())
+                        .antMatchers("/product**").hasAnyAuthority(Role.ADMIN.getAuthority(), Role.USER.getAuthority())
                 ).logout(logout-> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/marketplace")
