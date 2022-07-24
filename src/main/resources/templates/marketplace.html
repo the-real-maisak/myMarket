@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>MyMarketplace</title>
@@ -9,6 +9,15 @@
     <div class="container">
         <H1>WELCOME TO MY MARKETPLACE</H1>
         <a href="showcase" class="btn btn-success">Перейти к товарам</a>
+        <span><a href="/registration">Регистрация</a></span>
+        <form method="post" action="/login" id="login">
+            <input type="text" name="username" placeholder="username"/>
+            <input type="password" name="password" placeholder="пароль"/>
+            <input type="submit" class="btn" value="вход"/>
+        </form>
+        <div sec:authorize="hasRole('ADMIN)">
+            <a href="/administrate"></a>
+        </div>
     </div>
     </body>
 </html>
