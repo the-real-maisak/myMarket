@@ -63,7 +63,7 @@ public class ProductController {
         }
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
         Path path = null;
-        String image_Dir = "C:\\Users\\satan\\IdeaProjects\\myMarket\\src\\main\\resources\\images\\";
+        String image_Dir = "C:\\Users\\satan\\IdeaProjects\\myMarket\\src\\main\\resources\\static\\images\\";
         try {
             path = Path.of(image_Dir + fileName);
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
@@ -71,7 +71,7 @@ public class ProductController {
             e.printStackTrace();
         }
 //        product = Optional.ofNullable(repository.findById().get()).map(product2 -> repository.findById(product.getId()).get()).orElseThrow(()->new RuntimeException("Error"));
-        product.setGovno("images/" + path.getFileName().toString());
+        product.setImageName("images/" + path.getFileName().toString());
 //        product.setId(product.getId());
         repository.save(product);
 //        attributes.addAttribute("message", "uploaded" + fileName + "!");

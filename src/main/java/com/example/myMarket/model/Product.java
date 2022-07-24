@@ -11,7 +11,7 @@ public class Product {
     private int value;
     private boolean isInStock;
     private String description;
-    public String govno;
+    public String imageName;
 
     public Product() {
     }
@@ -70,12 +70,12 @@ public class Product {
         this.description = description;
     }
 
-    public String getGovno(String govno) {
-        return this.govno;
+    public String getImageName() {
+        return imageName;
     }
 
-    public void setGovno(String govno) {
-        this.govno = govno;
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     @Override
@@ -86,7 +86,7 @@ public class Product {
                 ", value=" + value +
                 ", isInStock=" + isInStock +
                 ", description='" + description + '\'' +
-                ", govno='" + govno + '\'' +
+                ", govno='" + imageName + '\'' +
                 '}';
     }
 }

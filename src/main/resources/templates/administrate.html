@@ -16,12 +16,12 @@
             <th>Цена</th>
             <th>В наличии</th>
             <th>Редактирование</th>
-            <th></th>
+<!--            <th></th>-->
             <th>Удаление</th>
         </tr>
         <tr th:each="product : ${productList}">
             <td th:text="${product.id}"></td>
-            <td><img th:src="${product.govno}" alt="" height="180px"/></td>
+            <td><img th:src="${product.imageName}" alt="" height="180px"/></td>
             <td>
                 <a th:text="${product.name}" th:href="@{product(id=${product.id})}"></a>
             </td>
@@ -30,9 +30,9 @@
             <td>
                 <a th:href="@{update(id=${product.id})}">Редактировать</a>
             </td>
-            <td>
-                <a th:href="@{uploadFile(id=${product.id})}">добавить изображение</a>
-            </td>
+<!--            <td>-->
+<!--                <a th:href="@{uploadFile(id=${product.id})}">добавить изображение</a>-->
+<!--            </td>-->
             <td>
                 <a class="text-danger" th:href="@{delete(id=${product.id})}">Удалить</a>
             </td>
