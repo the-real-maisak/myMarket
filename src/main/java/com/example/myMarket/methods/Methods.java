@@ -10,12 +10,12 @@ import org.springframework.ui.Model;
 public class Methods {
 
     public void adminOrUser(UserDetails userDetails, Model model){
-        String name=null;
+        String role=null;
         if (userDetails!=null) {
-            name = userDetails.getUsername();
-            if (name.equals("admin"))
-                model.addAttribute("admin",name);
+            role = String.valueOf(userDetails.getAuthorities());
+            if (role.equals("ADMIN"))
+                model.addAttribute("ADMIN",role);
         }
-        model.addAttribute("name",name);
+        model.addAttribute("role",role);
     }
 }
