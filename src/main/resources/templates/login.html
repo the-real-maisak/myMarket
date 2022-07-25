@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="marketplace">Главная</a>
+<br>
+<h2>Зарегистрируйтесь или войдите для просмотра этой страницы</h2>
+<div sec:authorize="isAnonymous()">
+    <span><a href="/registration">Регистрация</a></span>
+    <!--        <form method="post" action="/login" id="login">-->
+    <form th:action="@{/login}" method="post">
+        <input type="text" name="username" placeholder="username"/>
+        <input type="password" name="password" placeholder="пароль"/>
+        <input type="submit" class="btn" value="вход"/>
+    </form>
+</div>
+</body>
+</html>

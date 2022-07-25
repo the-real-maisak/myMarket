@@ -25,6 +25,10 @@ public class ProductController {
     @Autowired
     ProductRepository repository;
 
+    @GetMapping("/login")
+    public String login(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+        return "login";
+    }
 
     @GetMapping("/marketplace")
     public String main(@AuthenticationPrincipal UserDetails userDetails, Model model) {
