@@ -58,11 +58,11 @@ public class AdminController {
         return "uploadFile";
     }
 
-    @PostMapping("uploadFile")
+    @PostMapping("/uploadFile")
     public String uploadFile(@ModelAttribute Product product, @RequestParam("file") MultipartFile file, RedirectAttributes attributes) {
         if (file.isEmpty()) {
             attributes.addFlashAttribute("message", "uploadFile");
-            return "redirect:administrate?login=admin";
+            return "redirect:administrate";
         }
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
         Path path = null;
@@ -74,11 +74,11 @@ public class AdminController {
             e.printStackTrace();
         }
 //        product = Optional.ofNullable(repository.findById().get()).map(product2 -> repository.findById(product.getId()).get()).orElseThrow(()->new RuntimeException("Error"));
-        product.setGovno("static/images/" + path.getFileName().toString());
+        product.setImageName("images/" + path.getFileName().toString());
 //        product.setId(product.getId());
         repository.save(product);
 //        attributes.addAttribute("message", "uploaded" + fileName + "!");
-        return "redirect:administrate?login=admin";
+        return "redirect:administrate";
     }
 
     @GetMapping("add")
