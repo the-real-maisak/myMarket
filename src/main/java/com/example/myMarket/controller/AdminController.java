@@ -31,24 +31,24 @@ public class AdminController {
     @Autowired
     UsersService UsersService;
 
-    @GetMapping("/administrate")
-    public String findAll(Model model) {
-        List<Product> productList = repository.findAll();
-        model.addAttribute("productList", productList);
-        return "administrate";
-    }
+//    @GetMapping("/administrate")
+//    public String findAll(Model model) {
+//        List<Product> productList = repository.findAll();
+//        model.addAttribute("productList", productList);
+//        return "administrate";
+//    }
 
     @GetMapping("users")
     public String adminPage(Model model){
-        List<Users> list= UsersService.getAllUsers();
-        model.addAttribute("allUsers",list);
-        return "administrate";
+        List<Users> allUsers= UsersService.getAllUsers();
+        model.addAttribute("allUsers", allUsers);
+        return "users";
     }
 
     @GetMapping("delete")
     public String delete(@RequestParam int id) {
         repository.deleteById(id);
-        return "redirect:administrate?login=admin";
+        return "redirect:showcase?login=admin";
     }
 
     @GetMapping("uploadFile")
@@ -62,7 +62,7 @@ public class AdminController {
     public String uploadFile(@ModelAttribute Product product, @RequestParam("file") MultipartFile file, RedirectAttributes attributes) {
         if (file.isEmpty()) {
             attributes.addFlashAttribute("message", "uploadFile");
-            return "redirect:administrate";
+            return "redirect:showcase";
         }
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
         Path path = null;
@@ -78,7 +78,7 @@ public class AdminController {
 //        product.setId(product.getId());
         repository.save(product);
 //        attributes.addAttribute("message", "uploaded" + fileName + "!");
-        return "redirect:administrate";
+        return "redirect:showcase";
     }
 
     @GetMapping("add")
@@ -89,7 +89,7 @@ public class AdminController {
     @PostMapping("add")
     public String add(@ModelAttribute Product product) {
         repository.save(product);
-        return "redirect:administrate?login=admin";
+        return "redirect:showcase?login=admin";
     }
 
     @GetMapping("update")
@@ -102,6 +102,6 @@ public class AdminController {
     @PostMapping("update")
     public String update(@ModelAttribute Product product) {
         repository.save(product);
-        return "redirect:administrate?login=admin";
+        return "redirect:showcase?login=admin";
     }
 }

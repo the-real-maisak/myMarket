@@ -19,8 +19,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeHttpRequests( urlConfig -> urlConfig
                         .antMatchers("/marketplace", "/", "/registration").permitAll()
                       // .anyRequest().authenticated().
-                        .antMatchers("/administrate**").hasAuthority(Role.ADMIN.getAuthority())
-                        .antMatchers("/product**").hasAnyAuthority(Role.ADMIN.getAuthority(), Role.USER.getAuthority())
+                        .antMatchers("/administrate**").hasAuthority(Role.ROLE_ADMIN.getAuthority())
+                        .antMatchers("/product**").hasAnyAuthority(Role.ROLE_ADMIN.getAuthority(), Role.ROLE_USER.getAuthority())
                 ).logout(logout-> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/marketplace")

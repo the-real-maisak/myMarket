@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title th:text="${product.name}">Товар</title>
@@ -27,5 +27,14 @@
   <br>
   <br>
   <a href="showcase" class="btn btn-success">Назад</a>
+<div sec:authorize="isAnonymous()">
+  <span><a href="/registration">Регистрация</a></span>
+  <!--        <form method="post" action="/login" id="login">-->
+  <form th:action="@{/login}" method="post">
+    <input type="text" name="username" placeholder="username"/>
+    <input type="password" name="password" placeholder="пароль"/>
+    <input type="submit" class="btn" value="вход"/>
+  </form>
+</div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 package com.example.myMarket.exeptions;
 
-import com.example.myMarket.methods.Methods;
+//import com.example.myMarket.methods.Methods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,14 +14,14 @@ import java.util.List;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @Autowired
-    private Methods methods;
+//    @Autowired
+//    private Methods methods;
 
 
     @ExceptionHandler(IncorrectUser.class)
     public String IncorrectUserHandler(Model model, @AuthenticationPrincipal UserDetails userDetails){
         if (userDetails!=null)
-            return "redirect:/";
+            return "redirect:/marketplace";
         model.addAttribute("err","username или пароль введены неверно");
         return "err";
     }

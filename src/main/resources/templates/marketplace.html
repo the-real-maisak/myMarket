@@ -19,6 +19,12 @@
     <div class="container">
         <H1>WELCOME TO MY MARKETPLACE</H1>
         <a href="showcase" class="btn btn-success">Перейти к товарам</a>
+        <div sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" class="btn" value="выйти"/>
+            </form>
+        </div>
+        <div sec:authorize="isAnonymous()">
         <span><a href="/registration">Регистрация</a></span>
 <!--        <form method="post" action="/login" id="login">-->
             <form th:action="@{/login}" method="post">
@@ -26,9 +32,9 @@
             <input type="password" name="password" placeholder="пароль"/>
             <input type="submit" class="btn" value="вход"/>
         </form>
-        <div sec:authorize="hasRole('ADMIN')"><a href="/administrate"></a></div>
-<!--        <div th:if="${#authorization.expression('hasRole(''ADMIN'')')}">-->
-            <a href="administrate"></a>
+        </div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <a href="/users">admin</a>
         </div>
     </div>
     </body>

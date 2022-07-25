@@ -1,6 +1,5 @@
 package com.example.myMarket.controller;
 
-import com.example.myMarket.methods.Methods;
 import com.example.myMarket.model.Product;
 import com.example.myMarket.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +25,9 @@ public class ProductController {
     @Autowired
     ProductRepository repository;
 
+
     @GetMapping("/marketplace")
-    public String main() {
+    public String main(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         return "marketplace";
     }
 

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Товары</title>
+    <title>admin</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
@@ -15,18 +15,59 @@
             <th>Название</th>
             <th>Цена</th>
             <th>В наличии</th>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <th>Редактирование</th>
+<!--            <th></th>-->
+            <th>Удаление</th>
+    </div>
         </tr>
         <tr th:each="product : ${productList}">
             <td th:text="${product.id}"></td>
-            <td><a th:href="@{product(id=${product.id})}"><img th:src="${product.imageName}" alt="" height="180px"/></a></td>
-<!--            <td><img th:src="${product.fileName}" /></td>-->
+            <td>
+                <a th:href="@{product(id=${product.id})}">
+                    <img th:src="${product.imageName}" alt="" height="180px"/>
+                </a>
+            </td>
             <td>
                 <a th:text="${product.name}" th:href="@{product(id=${product.id})}"></a>
             </td>
             <td th:text="${product.value}"></td>
-            <td th:text="${product.inStock}"></td>
+            <td th:text="${product.InStock}"></td>
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <td>
+                <a th:href="@{update(id=${product.id})}">Редактировать</a>
+            </td>
+<!--            <td>-->
+<!--                <a th:href="@{uploadFile(id=${product.id})}">добавить изображение</a>-->
+<!--            </td>-->
+            <td>
+                <a class="text-danger" th:href="@{delete(id=${product.id})}">Удалить</a>
+            </td>
+            </div>
         </tr>
     </table>
+    <br>
+    <br>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a href="add" class="btn btn-success">Добавить новый товар</a>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" class="btn" value="выйти"/>
+        </form>
+    </div>
+    <div sec:authorize="isAnonymous()">
+        <span><a href="/registration">Регистрация</a></span>
+        <!--        <form method="post" action="/login" id="login">-->
+        <form th:action="@{/login}" method="post">
+            <input type="text" name="username" placeholder="username"/>
+            <input type="password" name="password" placeholder="пароль"/>
+            <input type="submit" class="btn" value="вход"/>
+        </form>
+    </div>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a href="/users">admin</a>
+    </div>
 </div>
 </body>
 </html>

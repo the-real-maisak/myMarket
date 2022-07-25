@@ -57,7 +57,7 @@ public class UsersServiceImpl implements UserDetailsService, UsersService {
     public void createUser(CreateUser usersDto) {
         Users users=new Users();
         users.setUsername(usersDto.getUsername());
-        users.setRole(Role.USER);
+        users.setRole(Role.ROLE_USER);
         Optional.ofNullable(usersDto.getPassword())
                 .filter(StringUtils::hasText)
                 .map(passwordEncoder::encode)
