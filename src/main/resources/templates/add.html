@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-    <body>
+<body>
 <!--    <section class="my-5">-->
 <!--        <div class="container">-->
 <!--            <div class="row">-->
@@ -22,20 +23,20 @@
 <!--            </div>-->
 <!--        </div>-->
 <!--    </section>-->
-    <div class="container">
-        <form method="post" action="uploadFile" enctype="multipart/form-data" th:object="${product}">
-            Не больше 1 мб <input type="file" name="file" class="form-control-file">
-            Название товара <input type="text" name="name">
-            <br>
-            Цена <input type="number" name="value">
-            <br>
-            В наличии <input type="checkbox" name="inStock">
-            <br>
-            Описание <input type="text" name="description">
-            <br>
-            <br>
-            <button class="btn btn-success" type="submit">Добавить товар</button>
-        </form>
-    </div>
-    </body>
+<div class="container">
+    <form method="post" action="uploadFile" enctype="multipart/form-data" th:object="${product}">
+        Не больше 1 мб <input type="file" name="file" class="form-control-file">
+        Название товара <input type="text" name="name">
+        <br>
+        Цена <input type="number" name="value">
+        <br>
+        В наличии <input type="checkbox" name="inStock">
+        <br>
+        Описание <input type="text" name="description">
+        <br>
+        <br>
+        <button class="btn btn-success" type="submit">Добавить товар</button>
+    </form>
+</div>
+</body>
 </html>

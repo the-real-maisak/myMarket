@@ -3,38 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${product.name}">Товар</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
 <h2 ${requestScope.login}></h2>
-  <a href="marketplace" class="btn btn-success">главная</a>
-  <h1><td th:text="${product.name}"></td></h1>
-  <img th:src="${product.imageName}" alt=""/>
-  <table class="table table-striped">
+<a href="marketplace" class="btn btn-success">главная</a>
+<h1>
+    <td th:text="${product.name}"></td>
+</h1>
+<img th:src="${product.imageName}" alt=""/>
+<table class="table table-striped">
     <tr>
-      <th>Цена</th>
-      <td th:text="${product.value}">BYN</td>
+        <th>Цена</th>
+        <td th:text="${product.value}">BYN</td>
     </tr>
     <tr>
-      <th>В наличии</th>
-      <td th:text="${product.inStock}"></td>
+        <th>В наличии</th>
+        <td th:text="${product.inStock}"></td>
     </tr>
     <tr>
-      <th>Описание</th>
-      <td th:text="${product.description}"></td>
+        <th>Описание</th>
+        <td th:text="${product.description}"></td>
     </tr>
-  </table>
-  <br>
-  <br>
-  <a href="showcase" class="btn btn-success">Назад</a>
+</table>
+<br>
+<br>
+<a href="showcase" class="btn btn-success">Назад</a>
 <div sec:authorize="isAnonymous()">
-  <span><a href="/registration">Регистрация</a></span>
-  <!--        <form method="post" action="/login" id="login">-->
-  <form th:action="@{/login}" method="post">
-    <input type="text" name="username" placeholder="username"/>
-    <input type="password" name="password" placeholder="пароль"/>
-    <input type="submit" class="btn" value="вход"/>
-  </form>
+    <span><a href="/registration">Регистрация</a></span>
+    <!--        <form method="post" action="/login" id="login">-->
+    <form th:action="@{/login}" method="post">
+        <input type="text" name="username" placeholder="username"/>
+        <input type="password" name="password" placeholder="пароль"/>
+        <input type="submit" class="btn" value="вход"/>
+    </form>
 </div>
 </body>
 </html>

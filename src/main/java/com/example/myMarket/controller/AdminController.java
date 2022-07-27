@@ -39,8 +39,8 @@ public class AdminController {
 //    }
 
     @GetMapping("users")
-    public String adminPage(Model model){
-        List<Users> allUsers= UsersService.getAllUsers();
+    public String adminPage(Model model) {
+        List<Users> allUsers = UsersService.getAllUsers();
         model.addAttribute("allUsers", allUsers);
         return "users";
     }

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Товары</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
 <a href="marketplace" class="btn btn-success">главная</a>
@@ -15,11 +16,11 @@
             <th>Название</th>
             <th>Цена</th>
             <th>В наличии</th>
-    <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <th>Редактирование</th>
-<!--            <th></th>-->
-            <th>Удаление</th>
-    </div>
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <th>Редактирование</th>
+                <!--            <th></th>-->
+                <th>Удаление</th>
+            </div>
         </tr>
         <tr th:each="product : ${productList}">
             <td th:text="${product.id}"></td>
@@ -34,15 +35,15 @@
             <td th:text="${product.value}">BYN</td>
             <td th:text="${product.InStock}"></td>
             <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <td>
-                <a th:href="@{update(id=${product.id})}">Редактировать</a>
-            </td>
-<!--            <td>-->
-<!--                <a th:href="@{uploadFile(id=${product.id})}">добавить изображение</a>-->
-<!--            </td>-->
-            <td>
-                <a class="text-danger" th:href="@{delete(id=${product.id})}">Удалить</a>
-            </td>
+                <td>
+                    <a th:href="@{update(id=${product.id})}">Редактировать</a>
+                </td>
+                <!--            <td>-->
+                <!--                <a th:href="@{uploadFile(id=${product.id})}">добавить изображение</a>-->
+                <!--            </td>-->
+                <td>
+                    <a class="text-danger" th:href="@{delete(id=${product.id})}">Удалить</a>
+                </td>
             </div>
         </tr>
     </table>

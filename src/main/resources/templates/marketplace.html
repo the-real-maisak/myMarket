@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-<!--    <bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">-->
-<!--        ...-->
-<!--        <property name="additionalDialects">-->
-<!--            <set>-->
-<!--                &lt;!&ndash; Note the package would change to 'springsecurity[5]' if you are using that version &ndash;&gt;-->
-<!--                <bean class="org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect"/>-->
-<!--            </set>-->
-<!--        </property>-->
-<!--        ...-->
-<!--    </bean>-->
+    <!--    <bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">-->
+    <!--        ...-->
+    <!--        <property name="additionalDialects">-->
+    <!--            <set>-->
+    <!--                &lt;!&ndash; Note the package would change to 'springsecurity[5]' if you are using that version &ndash;&gt;-->
+    <!--                <bean class="org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect"/>-->
+    <!--            </set>-->
+    <!--        </property>-->
+    <!--        ...-->
+    <!--    </bean>-->
     <meta charset="UTF-8">
     <title>MyMarketplace</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-    <body>
-    <div class="container">
-        <H1>WELCOME TO MY MARKETPLACE</H1>
-        <a href="showcase" class="btn btn-success">Перейти к товарам</a>
-        <div sec:authorize="isAuthenticated()">
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" class="btn" value="выйти"/>
-            </form>
-        </div>
-        <div sec:authorize="isAnonymous()">
+<body>
+<div class="container">
+    <H1>WELCOME TO MY MARKETPLACE</H1>
+    <a href="showcase" class="btn btn-success">Перейти к товарам</a>
+    <div sec:authorize="isAuthenticated()">
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" class="btn" value="выйти"/>
+        </form>
+    </div>
+    <div sec:authorize="isAnonymous()">
         <span><a href="/registration">Регистрация</a></span>
-<!--        <form method="post" action="/login" id="login">-->
-            <form th:action="@{/login}" method="post">
+        <!--        <form method="post" action="/login" id="login">-->
+        <form th:action="@{/login}" method="post">
             <input type="text" name="username" placeholder="username"/>
             <input type="password" name="password" placeholder="пароль"/>
             <input type="submit" class="btn" value="вход"/>
         </form>
-        </div>
-        <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <a href="/users">admin</a>
-        </div>
     </div>
-    </body>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a href="/users">admin</a>
+    </div>
+</div>
+</body>
 </html>

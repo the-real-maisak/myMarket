@@ -26,28 +26,28 @@ public class RegistrationAndUserPageController {
 
 
     @GetMapping("/registration")
-    public String registrationPage(Model model, @AuthenticationPrincipal UserDetails userDetails){
-        if (userDetails!=null){
+    public String registrationPage(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+        if (userDetails != null) {
             return "redirect:/marketplace";
         }
-        CreateUser dto=new CreateUser();
-        model.addAttribute("dto",dto);
+        CreateUser dto = new CreateUser();
+        model.addAttribute("dto", dto);
         return "registrationPage";
     }
 
     @PostMapping("/registration")
-    public String postRegistrationPage(@Valid @ModelAttribute("dto") CreateUser createUser, BindingResult bindingResult, Model model){
+    public String postRegistrationPage(@Valid @ModelAttribute("dto") CreateUser createUser, BindingResult bindingResult, Model model) {
 
-        if (usersService.validateUsername(createUser)){
-            CreateUser dto=new CreateUser();
-            model.addAttribute("dto",dto);
-            model.addAttribute("error","Пользователь с таким именем уже существует");
+        if (usersService.validateUsername(createUser)) {
+            CreateUser dto = new CreateUser();
+            model.addAttribute("dto", dto);
+            model.addAttribute("error", "Пользователь с таким именем уже существует");
             return "registrationPage";
         }
-        if(bindingResult.hasErrors()){
-            CreateUser dto=new CreateUser();
-            model.addAttribute("dto",dto);
-            model.addAttribute("error",bindingResult.getAllErrors().get(0).getDefaultMessage());
+        if (bindingResult.hasErrors()) {
+            CreateUser dto = new CreateUser();
+            model.addAttribute("dto", dto);
+            model.addAttribute("error", bindingResult.getAllErrors().get(0).getDefaultMessage());
             return "registrationPage";
         }
         usersService.createUser(createUser);
@@ -55,17 +55,17 @@ public class RegistrationAndUserPageController {
     }
 
     @GetMapping("/userPage")
-    public String userPage(@RequestParam("login")String login, Model model, @AuthenticationPrincipal UserDetails userDetails) {
-        String name=null;
-        if (userDetails!=null) {
+    public String userPage(@RequestParam("login") String login, Model model, @AuthenticationPrincipal UserDetails userDetails) {
+        String name = null;
+        if (userDetails != null) {
             name = userDetails.getUsername();
         }
-        model.addAttribute("login",login);
+        model.addAttribute("login", login);
         return "userPage";
     }
 
     @GetMapping("/err")
-    public String errorLoginPage(Model model){
+    public String errorLoginPage(Model model) {
         throw new IncorrectUser("Failed to input");
     }
 }
